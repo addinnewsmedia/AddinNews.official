@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AddinNews — Berita Terkini</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#111827}
+
+header{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:100
+}
+
+.header-inner{
+  max-width:1100px;
+  margin:auto;
+  min-height:68px;
+  padding:7px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
+.logo{
+  width:85px;
+  height:auto;
+  display:block
+}
+
+.menu-btn{
+  border:0;
+  background:#f3f4f6;
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  font-size:21px;
+  cursor:pointer
+}
+
+nav{
+  background:#111827;
+  overflow-x:auto;
+  white-space:nowrap
+}
+
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  gap:5px;
+  padding:0 15px
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:14px 15px;
+  display:block;
+  font-size:14px;
+  font-weight:700
+}
+
+nav a:hover{
+  background:#078bd0
+}
+
+.ad-container{
+  max-width:1100px;
+  margin:18px auto;
+  padding:0 15px
+}
+
+.ad-box{
+  min-height:90px;
+  background:#fff;
+  border:1px dashed #cbd5e1;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#94a3b8;
+  font-size:12px;
+  position:relative
+}
+
+.ad-label{
+  position:absolute;
+  top:6px;
+  left:9px;
+  font-size:9px;
+  color:#94a3b8
+}
+
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:0 15px 40px
+}
+
+.breaking{
+  background:#fff;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:20px;
+  border:1px solid #e5e7eb
+}
+
+.breaking-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:12px
+}
+
+.live{
+  width:9px;
+  height:9px;
+  background:#d90429;
+  border-radius:50%;
+  animation:pulse 1.2s infinite
+}
+
+@keyframes pulse{
+  50%{opacity:.3}
+}
+
+.empty-breaking{
+  color:#9ca3af;
+  font-size:14px;
+  padding:10px 0
+}
+
+.content-grid{
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:20px
+}
+
+.section-title{
+  font-size:21px;
+  font-weight:900;
+  margin:5px 0 15px
+}
+
+.empty-news{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:55px 20px;
+  text-align:center
+}
+
+.empty-icon{
+  font-size:45px;
+  margin-bottom:12px
+}
+
+.empty-news h2{
+  font-size:20px;
+  margin-bottom:8px
+}
+
+.empty-news p{
+  color:#6b7280;
+  font-size:14px;
+  line-height:1.6
+}
+
+.sidebar-card{
+  background:#fff;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  padding:18px
+}
+
+.sidebar-card h3{
+  font-size:17px;
+  margin-bottom:12px
+}
+
+.sidebar-empty{
+  color:#9ca3af;
+  font-size:13px;
+  line-height:1.5
+}
+
+footer{
+  background:#111827;
+  color:#9ca3af;
+  padding:35px 20px;
+  text-align:center;
+  margin-top:30px
+}
+
+.footer-logo{
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:10px
+}
+
+footer p{
+  font-size:13px;
+  line-height:1.6
+}
+
+/* MENU SAMPING */
+.side-menu{
+  position:fixed;
+  top:0;
+  right:-260px;
+  width:260px;
+  max-width:75%;
+  height:100vh;
+  background:#fff;
+  z-index:1000;
+  box-shadow:-3px 0 12px rgba(0,0,0,.15);
+  transition:right .3s ease;
+  padding:20px;
+}
+
+.side-menu.active{
+  right:0;
+}
+
+.side-menu h2{
+  font-size:20px;
+  margin-bottom:25px;
+}
+
+.side-menu a{
+  display:block;
+  color:#111827;
+  text-decoration:none;
+  padding:14px 5px;
+  border-bottom:1px solid #eee;
+  font-weight:600;
+}
+
+.side-menu a:hover{
+  background:#f3f4f6;
+}
+
+.close-menu{
+  position:absolute;
+  top:15px;
+  right:15px;
+  border:0;
+  background:#f3f4f6;
+  width:35px;
+  height:35px;
+  border-radius:8px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.menu-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:calc(100% - 260px);
+  height:100vh;
+  background:rgba(0,0,0,.25);
+  z-index:999;
+  display:none;
+}
+
+.menu-overlay.active{
+  display:block;
+}
+
+@media(max-width:700px){
+
+  .header-inner{
+    min-height:60px;
+    padding:6px 14px
+  }
+
+  .logo{
+    width:75px
+  }
+
+  .content-grid{
+    grid-template-columns:1fr
+  }
+
+  .ad-box{
+    min-height:70px
+  }
+
+  .section-title{
+    font-size:19px
+  }
+
+  .side-menu{
+    width:240px;
+    max-width:72%;
+  }
+
+  .menu-overlay{
+    width:calc(100% - 240px);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-inner">
+
+<a href="#" aria-label="AddinNews">
+
+<img
+class="logo"
+alt="AddinNews"
+src="https://cdn.phototourl.com/free/2026-08-12-81c6a61f-20c5-4eb8-9c95-950329a86342.png"
+>
+
+</a>
+
+<button
+class="menu-btn"
+onclick="openMenu()"
+aria-label="Menu"
+>
+☰
+</button>
+
+</div>
+
+</header>
+
+<!-- MENU SAMPING -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+<div class="side-menu" id="sideMenu">
+
+<button class="close-menu" onclick="closeMenu()">✕</button>
+
+<h2>AddinNews</h2>
+
+<a href="#beranda" onclick="closeMenu()">🏠 Beranda</a>
+<a href="#nasional" onclick="closeMenu()">📰 Nasional</a>
+<a href="#internasional" onclick="closeMenu()">🌎 Internasional</a>
+<a href="#teknologi" onclick="closeMenu()">💻 Teknologi</a>
+<a href="#olahraga" onclick="closeMenu()">⚽ Olahraga</a>
+<a href="#ekonomi" onclick="closeMenu()">💰 Ekonomi</a>
+<a href="#lifestyle" onclick="closeMenu()">✨ Lifestyle</a>
+
+</div>
+
+<nav>
+
+<div class="nav-inner">
+
+<a href="#">Beranda</a>
+<a href="#">Nasional</a>
+<a href="#">Internasional</a>
+<a href="#">Teknologi</a>
+<a href="#">Olahraga</a>
+<a href="#">Ekonomi</a>
+<a href="#">Lifestyle</a>
+
+</div>
+
+</nav>
+
+<div class="ad-container">
+
+<div class="ad-box">
+
+<span class="ad-label">
+Advertisement
+</span>
+
+Area Iklan
+
+</div>
+
+</div>
+
+<main>
+
+<section class="breaking">
+
+<div class="breaking-title">
+
+<span class="live"></span>
+
+BREAKING NEWS
+
+</div>
+
+<div class="empty-breaking">
+Belum ada breaking news.
+</div>
+
+</section>
+
+<div class="content-grid">
+
+<section>
+
+<h1 class="section-title">
+📰 Berita Terbaru
+</h1>
+
+<div class="empty-news">
+
+<div class="empty-icon">
+📰
+</div>
+
+<h2>
+Belum Ada Berita
+</h2>
+
+<p>
+AddinNews baru saja dimulai.<br>
+Berita pertama akan muncul di sini.
+</p>
+
+</div>
+
+</section>
+
+<aside>
+
+<div class="sidebar-card">
+
+<h3>
+🔥 Terpopuler
+</h3>
+
+<p class="sidebar-empty">
+Belum ada berita populer.
+</p>
+
+</div>
+
+<div
+class="ad-container"
+style="padding:0;margin:20px 0"
+>
+
+<div
+class="ad-box"
+style="min-height:250px"
+>
+
+<span class="ad-label">
+Advertisement
+</span>
+
+Area Iklan
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
+</main>
+
+<div class="ad-container">
+
+<div class="ad-box">
+
+<span class="ad-label">
+Advertisement
+</span>
+
+Area Iklan
+
+</div>
+
+</div>
+
+<footer>
+
+<div class="footer-logo">
+AddinNews
+</div>
+
+<p>
+Berita Terkini, Cepat &amp; Terpercaya
+</p>
+
+<br>
+
+<p>
+© 2026 AddinNews. Semua hak dilindungi.
+</p>
+
+</footer>
+
+<script>
+function openMenu(){
+  document.getElementById("sideMenu").classList.add("active");
+  document.getElementById("menuOverlay").classList.add("active");
+}
+
+function closeMenu(){
+  document.getElementById("sideMenu").classList.remove("active");
+  document.getElementById("menuOverlay").classList.remove("active");
+}
+</script>
+
+</body>
+  </html>
