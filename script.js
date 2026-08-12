@@ -1,4 +1,6 @@
-/* MENU */
+/* =========================
+   MENU
+========================= */
 
 function openMenu(){
   document.getElementById("sideMenu").classList.add("active");
@@ -11,7 +13,9 @@ function closeMenu(){
 }
 
 
-/* DARK MODE */
+/* =========================
+   DARK MODE
+========================= */
 
 function toggleDarkMode(){
 
@@ -40,25 +44,38 @@ function loadDarkMode(){
 
     document.getElementById("themeBtn").textContent =
       "☀️";
+
+  }else{
+
+    document.getElementById("themeBtn").textContent =
+      "🌙";
   }
 }
 
 
-/* JAM REALTIME */
+/* =========================
+   JAM REALTIME
+========================= */
 
 function updateClock(){
 
+  const clock =
+    document.getElementById("realtimeClock");
+
+  if(!clock) return;
+
   const now = new Date();
 
-  const time = new Intl.DateTimeFormat("id-ID",{
-    timeZone:"Asia/Jakarta",
-    hour:"2-digit",
-    minute:"2-digit",
-    second:"2-digit",
-    hour12:false
-  }).format(now);
+  const time =
+    new Intl.DateTimeFormat("id-ID",{
+      timeZone:"Asia/Jakarta",
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit",
+      hour12:false
+    }).format(now);
 
-  document.getElementById("realtimeClock").textContent =
+  clock.textContent =
     time + " WIB";
 }
 
@@ -67,17 +84,28 @@ updateClock();
 setInterval(updateClock,1000);
 
 
-/* JUMLAH VIEW */
+/* =========================
+   VIEW BERITA
+========================= */
 
 function increaseArticleView(){
 
   const key =
     "addinnews_article_views";
 
-  const views =
-    JSON.parse(
-      localStorage.getItem(key) || "{}"
-    );
+  let views = {};
+
+  try{
+
+    views =
+      JSON.parse(
+        localStorage.getItem(key) || "{}"
+      );
+
+  }catch(error){
+
+    views = {};
+  }
 
   views["hut-81-ri"] =
     (views["hut-81-ri"] || 0) + 1;
@@ -89,17 +117,27 @@ function increaseArticleView(){
 }
 
 
-/* BUKA ARTIKEL */
+/* =========================
+   BUKA ARTIKEL
+========================= */
 
 function readArticle(){
 
   increaseArticleView();
 
-  document.getElementById("homeContent")
-    .style.display = "none";
+  const home =
+    document.getElementById("homeContent");
 
-  document.getElementById("articlePage")
-    .classList.add("active");
+  const article =
+    document.getElementById("articlePage");
+
+  if(home){
+    home.style.display = "none";
+  }
+
+  if(article){
+    article.classList.add("active");
+  }
 
   renderPopular();
 
@@ -110,15 +148,25 @@ function readArticle(){
 }
 
 
-/* KEMBALI */
+/* =========================
+   TUTUP ARTIKEL
+========================= */
 
 function closeArticle(){
 
-  document.getElementById("articlePage")
-    .classList.remove("active");
+  const home =
+    document.getElementById("homeContent");
 
-  document.getElementById("homeContent")
-    .style.display = "grid";
+  const article =
+    document.getElementById("articlePage");
+
+  if(article){
+    article.classList.remove("active");
+  }
+
+  if(home){
+    home.style.display = "grid";
+  }
 
   window.scrollTo({
     top:0,
@@ -127,11 +175,14 @@ function closeArticle(){
 }
 
 
-/* SHARE */
+/* =========================
+   BAGIKAN
+========================= */
 
 function shareArticle(){
 
   const shareData = {
+
     title:
       "Semarak Jelang HUT ke-81 RI",
 
@@ -140,6 +191,7 @@ function shareArticle(){
 
     url:
       window.location.href
+
   };
 
   if(navigator.share){
@@ -149,16 +201,26 @@ function shareArticle(){
 
   }else{
 
-    navigator.clipboard.writeText(
-      window.location.href
-    );
+    if(navigator.clipboard){
 
-    alert("Link artikel berhasil disalin.");
+      navigator.clipboard.writeText(
+        window.location.href
+      );
+
+      alert("Link artikel berhasil disalin.");
+
+    }else{
+
+      alert("Silakan salin link halaman ini.");
+
+    }
   }
 }
 
 
-/* KATEGORI */
+/* =========================
+   KATEGORI
+========================= */
 
 function showCategory(category){
 
@@ -174,13 +236,23 @@ function showCategory(category){
   const searchInput =
     document.getElementById("searchInput");
 
-  document.getElementById("articlePage")
-    .classList.remove("active");
+  const article =
+    document.getElementById("articlePage");
 
-  document.getElementById("homeContent")
-    .style.display = "grid";
+  const home =
+    document.getElementById("homeContent");
 
-  searchInput.value = "";
+  if(article){
+    article.classList.remove("active");
+  }
+
+  if(home){
+    home.style.display = "grid";
+  }
+
+  if(searchInput){
+    searchInput.value = "";
+  }
 
   document.querySelectorAll("nav a")
     .forEach(function(link){
@@ -188,32 +260,33 @@ function showCategory(category){
       link.classList.remove("active");
 
       if(link.dataset.category === category){
-
         link.classList.add("active");
       }
+
     });
 
   const card =
     document.querySelector(".news-card");
 
-  if(category === "beranda"){
+  if(
+    category === "beranda" ||
+    category === "nasional"
+  ){
 
-    categoryTitle.innerHTML =
-      "📰 Berita Terbaru";
+    if(category === "beranda"){
 
-    newsList.classList.remove("hidden");
-    emptyNews.classList.add("hidden");
+      categoryTitle.innerHTML =
+        "📰 Berita Terbaru";
 
-    if(card){
-      card.style.display = "";
+    }else{
+
+      categoryTitle.innerHTML =
+        "📰 Berita Nasional";
+
     }
 
-  }else if(category === "nasional"){
-
-    categoryTitle.innerHTML =
-      "📰 Berita Nasional";
-
     newsList.classList.remove("hidden");
+
     emptyNews.classList.add("hidden");
 
     if(card){
@@ -238,10 +311,11 @@ function showCategory(category){
 
       lifestyle:
         "✨ Berita Lifestyle"
+
     };
 
     categoryTitle.innerHTML =
-      names[category];
+      names[category] || "📰 Berita";
 
     newsList.classList.add("hidden");
 
@@ -263,13 +337,19 @@ function showCategory(category){
 }
 
 
-/* PENCARIAN */
+/* =========================
+   PENCARIAN
+========================= */
 
 function searchNews(){
 
+  const input =
+    document.getElementById("searchInput");
+
+  if(!input) return;
+
   const query =
-    document.getElementById("searchInput")
-      .value
+    input.value
       .trim()
       .toLowerCase();
 
@@ -284,12 +364,6 @@ function searchNews(){
 
   const cards =
     document.querySelectorAll(".news-card");
-
-  document.getElementById("articlePage")
-    .classList.remove("active");
-
-  document.getElementById("homeContent")
-    .style.display = "grid";
 
   if(!query){
 
@@ -314,17 +388,22 @@ function searchNews(){
   cards.forEach(function(card){
 
     const title =
-      card.dataset.title.toLowerCase();
+      (
+        card.dataset.title || ""
+      ).toLowerCase();
 
     if(title.includes(query)){
 
       card.style.display = "";
+
       found++;
 
     }else{
 
       card.style.display = "none";
+
     }
+
   });
 
   if(found === 0){
@@ -348,23 +427,38 @@ function searchNews(){
     newsList.classList.remove("hidden");
 
     emptyNews.classList.add("hidden");
+
   }
 }
 
 
-/* TERPOPULER */
+/* =========================
+   TOP / TERPOPULER
+========================= */
 
 function renderPopular(){
 
   const list =
     document.getElementById("popularList");
 
-  const views =
-    JSON.parse(
-      localStorage.getItem(
-        "addinnews_article_views"
-      ) || "{}"
-    );
+  if(!list) return;
+
+  let views = {};
+
+  try{
+
+    views =
+      JSON.parse(
+        localStorage.getItem(
+          "addinnews_article_views"
+        ) || "{}"
+      );
+
+  }catch(error){
+
+    views = {};
+
+  }
 
   const count =
     views["hut-81-ri"] || 0;
@@ -400,12 +494,16 @@ function renderPopular(){
 }
 
 
-/* LOADING RINGAN */
+/* =========================
+   LOADING RINGAN
+========================= */
 
 function showLoading(){
 
   const loading =
     document.getElementById("loadingBox");
+
+  if(!loading) return;
 
   loading.classList.add("active");
 
@@ -417,8 +515,19 @@ function showLoading(){
 }
 
 
-/* START */
+/* =========================
+   SAAT WEBSITE DIBUKA
+========================= */
 
-loadDarkMode();
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-renderPopular();
+    loadDarkMode();
+
+    updateClock();
+
+    renderPopular();
+
+  }
+);
