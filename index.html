@@ -120,22 +120,42 @@ main{
   margin-bottom:12px
 }
 
-.live{
-  width:9px;
-  height:9px;
-  background:#d90429;
-  border-radius:50%;
-  animation:pulse 1.2s infinite
+.breaking-news-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#f8fafc;
+  border-radius:8px;
+  padding:12px;
+  cursor:pointer;
+  transition:.2s
 }
 
-@keyframes pulse{
-  50%{opacity:.3}
+.breaking-news-item:hover{
+  background:#eef6fb
 }
 
-.empty-breaking{
-  color:#9ca3af;
+.breaking-tag{
+  background:#078bd0;
+  color:#fff;
+  font-size:10px;
+  font-weight:800;
+  padding:5px 7px;
+  border-radius:4px;
+  flex-shrink:0
+}
+
+.breaking-text{
   font-size:14px;
-  padding:10px 0
+  font-weight:700;
+  line-height:1.4
+}
+
+.breaking-arrow{
+  margin-left:auto;
+  font-size:18px;
+  color:#078bd0;
+  flex-shrink:0
 }
 
 .content-grid{
@@ -212,7 +232,6 @@ footer p{
   line-height:1.6
 }
 
-/* MENU SAMPING */
 .side-menu{
   position:fixed;
   top:0;
@@ -224,16 +243,16 @@ footer p{
   z-index:1000;
   box-shadow:-3px 0 12px rgba(0,0,0,.15);
   transition:right .3s ease;
-  padding:20px;
+  padding:20px
 }
 
 .side-menu.active{
-  right:0;
+  right:0
 }
 
 .side-menu h2{
   font-size:20px;
-  margin-bottom:25px;
+  margin-bottom:25px
 }
 
 .side-menu a{
@@ -242,11 +261,11 @@ footer p{
   text-decoration:none;
   padding:14px 5px;
   border-bottom:1px solid #eee;
-  font-weight:600;
+  font-weight:600
 }
 
 .side-menu a:hover{
-  background:#f3f4f6;
+  background:#f3f4f6
 }
 
 .close-menu{
@@ -259,7 +278,7 @@ footer p{
   height:35px;
   border-radius:8px;
   font-size:18px;
-  cursor:pointer;
+  cursor:pointer
 }
 
 .menu-overlay{
@@ -270,11 +289,139 @@ footer p{
   height:100vh;
   background:rgba(0,0,0,.25);
   z-index:999;
-  display:none;
+  display:none
 }
 
 .menu-overlay.active{
-  display:block;
+  display:block
+}
+
+.news-list{
+  display:block
+}
+
+.news-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  overflow:hidden
+}
+
+.news-image{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  display:block
+}
+
+.news-content{
+  padding:20px
+}
+
+.news-category{
+  display:inline-block;
+  background:#078bd0;
+  color:#fff;
+  padding:5px 9px;
+  border-radius:5px;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:10px
+}
+
+.news-title{
+  font-size:25px;
+  line-height:1.3;
+  font-weight:900;
+  margin-bottom:10px
+}
+
+.news-date{
+  color:#9ca3af;
+  font-size:12px;
+  margin-bottom:15px
+}
+
+.news-preview{
+  font-size:15px;
+  line-height:1.7;
+  color:#374151;
+  margin-bottom:18px
+}
+
+.read-more{
+  border:0;
+  background:#078bd0;
+  color:#fff;
+  padding:11px 17px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer
+}
+
+.read-more:hover{
+  background:#056fa7
+}
+
+.article-page{
+  display:none;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  overflow:hidden
+}
+
+.article-page.active{
+  display:block
+}
+
+.article-page-image{
+  width:100%;
+  height:auto;
+  max-height:600px;
+  object-fit:cover;
+  display:block
+}
+
+.article-page-content{
+  max-width:850px;
+  margin:auto;
+  padding:25px
+}
+
+.back-button{
+  border:0;
+  background:#f3f4f6;
+  color:#111827;
+  padding:10px 15px;
+  border-radius:8px;
+  font-weight:700;
+  cursor:pointer;
+  margin-bottom:22px
+}
+
+.article-page .news-title{
+  font-size:32px;
+  line-height:1.3;
+  margin-bottom:12px
+}
+
+.article-page p{
+  font-size:16px;
+  line-height:1.85;
+  color:#374151;
+  margin-bottom:18px
+}
+
+.news-subtitle{
+  font-size:20px;
+  font-weight:800;
+  margin:25px 0 12px
+}
+
+.hidden{
+  display:none
 }
 
 @media(max-width:700px){
@@ -302,11 +449,48 @@ footer p{
 
   .side-menu{
     width:240px;
-    max-width:72%;
+    max-width:72%
   }
 
   .menu-overlay{
-    width:calc(100% - 240px);
+    width:calc(100% - 240px)
+  }
+
+  .news-image{
+    height:220px
+  }
+
+  .news-title{
+    font-size:21px
+  }
+
+  .news-content{
+    padding:16px
+  }
+
+  .article-page-image{
+    height:auto;
+    max-height:none
+  }
+
+  .article-page-content{
+    padding:18px
+  }
+
+  .article-page .news-title{
+    font-size:24px
+  }
+
+  .article-page p{
+    font-size:15px
+  }
+
+  .breaking-news-item{
+    align-items:flex-start
+  }
+
+  .breaking-text{
+    font-size:13px
   }
 }
 </style>
@@ -340,7 +524,6 @@ aria-label="Menu"
 
 </header>
 
-<!-- MENU SAMPING -->
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 <div class="side-menu" id="sideMenu">
@@ -349,13 +532,13 @@ aria-label="Menu"
 
 <h2>AddinNews</h2>
 
-<a href="#beranda" onclick="closeMenu()">🏠 Beranda</a>
-<a href="#nasional" onclick="closeMenu()">📰 Nasional</a>
-<a href="#internasional" onclick="closeMenu()">🌎 Internasional</a>
-<a href="#teknologi" onclick="closeMenu()">💻 Teknologi</a>
-<a href="#olahraga" onclick="closeMenu()">⚽ Olahraga</a>
-<a href="#ekonomi" onclick="closeMenu()">💰 Ekonomi</a>
-<a href="#lifestyle" onclick="closeMenu()">✨ Lifestyle</a>
+<a href="#" onclick="showCategory('beranda');closeMenu()">🏠 Beranda</a>
+<a href="#" onclick="showCategory('nasional');closeMenu()">📰 Nasional</a>
+<a href="#" onclick="showCategory('internasional');closeMenu()">🌎 Internasional</a>
+<a href="#" onclick="showCategory('teknologi');closeMenu()">💻 Teknologi</a>
+<a href="#" onclick="showCategory('olahraga');closeMenu()">⚽ Olahraga</a>
+<a href="#" onclick="showCategory('ekonomi');closeMenu()">💰 Ekonomi</a>
+<a href="#" onclick="showCategory('lifestyle');closeMenu()">✨ Lifestyle</a>
 
 </div>
 
@@ -363,13 +546,13 @@ aria-label="Menu"
 
 <div class="nav-inner">
 
-<a href="#">Beranda</a>
-<a href="#">Nasional</a>
-<a href="#">Internasional</a>
-<a href="#">Teknologi</a>
-<a href="#">Olahraga</a>
-<a href="#">Ekonomi</a>
-<a href="#">Lifestyle</a>
+<a href="#" onclick="showCategory('beranda')">Beranda</a>
+<a href="#" onclick="showCategory('nasional')">Nasional</a>
+<a href="#" onclick="showCategory('internasional')">Internasional</a>
+<a href="#" onclick="showCategory('teknologi')">Teknologi</a>
+<a href="#" onclick="showCategory('olahraga')">Olahraga</a>
+<a href="#" onclick="showCategory('ekonomi')">Ekonomi</a>
+<a href="#" onclick="showCategory('lifestyle')">Lifestyle</a>
 
 </div>
 
@@ -391,31 +574,44 @@ Area Iklan
 
 <main>
 
+<!-- TOP BERITA -->
 <section class="breaking">
 
 <div class="breaking-title">
 
-<span class="live"></span>
+<span>🔥</span>
 
-BREAKING NEWS
+TOP BERITA
 
 </div>
 
-<div class="empty-breaking">
-Belum ada breaking news.
+<div class="breaking-news-item" onclick="readArticle()">
+
+<span class="breaking-tag">
+TOP
+</span>
+
+<span class="breaking-text">
+Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
+</span>
+
+<span class="breaking-arrow">
+→
+</span>
+
 </div>
 
 </section>
 
-<div class="content-grid">
+<div id="homeContent" class="content-grid">
 
 <section>
 
-<h1 class="section-title">
+<h1 class="section-title" id="categoryTitle">
 📰 Berita Terbaru
 </h1>
 
-<div class="empty-news">
+<div id="emptyNews" class="empty-news hidden">
 
 <div class="empty-icon">
 📰
@@ -426,9 +622,46 @@ Belum Ada Berita
 </h2>
 
 <p>
-AddinNews baru saja dimulai.<br>
-Berita pertama akan muncul di sini.
+Belum ada berita pada kategori ini.
 </p>
+
+</div>
+
+<div id="newsList" class="news-list">
+
+<article class="news-card" data-category="nasional">
+
+<img
+class="news-image"
+src="https://cdn.phototourl.com/free/2026-08-12-1603c041-b0f7-45fe-a67c-fe65ec93493c.png"
+alt="Semarak menjelang HUT ke-81 Republik Indonesia"
+>
+
+<div class="news-content">
+
+<span class="news-category">
+NASIONAL
+</span>
+
+<h2 class="news-title">
+Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
+</h2>
+
+<div class="news-date">
+12 Agustus 2026
+</div>
+
+<p class="news-preview">
+Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah. Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan...
+</p>
+
+<button class="read-more" onclick="readArticle()">
+Lihat Selengkapnya →
+</button>
+
+</div>
+
+</article>
 
 </div>
 
@@ -472,6 +705,76 @@ Area Iklan
 
 </div>
 
+<article class="article-page" id="articlePage">
+
+<img
+class="article-page-image"
+src="https://cdn.phototourl.com/free/2026-08-12-1603c041-b0f7-45fe-a67c-fe65ec93493c.png"
+alt="Semarak menjelang HUT ke-81 Republik Indonesia"
+>
+
+<div class="article-page-content">
+
+<button class="back-button" onclick="closeArticle()">
+← Kembali ke Berita
+</button>
+
+<span class="news-category">
+NASIONAL
+</span>
+
+<h1 class="news-title">
+Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
+</h1>
+
+<div class="news-date">
+12 Agustus 2026
+</div>
+
+<p>
+Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah.
+</p>
+
+<p>
+Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan, mulai dari menghias lingkungan dengan bendera Merah Putih hingga mengadakan berbagai perlombaan khas 17 Agustus.
+</p>
+
+<h3 class="news-subtitle">
+Berbagai Persiapan Mulai Dilakukan
+</h3>
+
+<p>
+Di sejumlah lingkungan, warga terlihat mulai memasang bendera Merah Putih dan berbagai dekorasi bernuansa merah putih. Kegiatan tersebut menjadi salah satu cara masyarakat ikut memeriahkan peringatan kemerdekaan Indonesia.
+</p>
+
+<p>
+Selain dekorasi, berbagai perlombaan juga mulai dipersiapkan. Lomba seperti makan kerupuk, balap karung, memasukkan pensil ke botol, hingga panjat pinang masih menjadi kegiatan yang banyak dinantikan masyarakat.
+</p>
+
+<h3 class="news-subtitle">
+Bukan Sekadar Perlombaan
+</h3>
+
+<p>
+Kemeriahan 17 Agustus bukan hanya tentang perlombaan dan hadiah. Kegiatan tersebut juga menjadi momen bagi masyarakat untuk berkumpul, mempererat kebersamaan, serta mengenang perjuangan para pahlawan dalam merebut kemerdekaan.
+</p>
+
+<p>
+Dengan semakin dekatnya tanggal 17 Agustus, suasana perayaan diperkirakan akan semakin meriah di berbagai wilayah.
+</p>
+
+<p>
+<strong>Dirgahayu Republik Indonesia ke-81! 🇮🇩</strong>
+</p>
+
+<p>
+Catatan: Detail kegiatan dapat berbeda di setiap daerah sesuai agenda masyarakat setempat.
+</p>
+
+</div>
+
+</article>
+
 </main>
 
 <div class="ad-container">
@@ -507,6 +810,7 @@ Berita Terkini, Cepat &amp; Terpercaya
 </footer>
 
 <script>
+
 function openMenu(){
   document.getElementById("sideMenu").classList.add("active");
   document.getElementById("menuOverlay").classList.add("active");
@@ -516,6 +820,76 @@ function closeMenu(){
   document.getElementById("sideMenu").classList.remove("active");
   document.getElementById("menuOverlay").classList.remove("active");
 }
+
+function readArticle(){
+
+  document.getElementById("homeContent").style.display="none";
+
+  document.getElementById("articlePage").classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function closeArticle(){
+
+  document.getElementById("articlePage").classList.remove("active");
+
+  document.getElementById("homeContent").style.display="grid";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function showCategory(category){
+
+  const newsList=document.getElementById("newsList");
+  const emptyNews=document.getElementById("emptyNews");
+  const categoryTitle=document.getElementById("categoryTitle");
+
+  document.getElementById("articlePage").classList.remove("active");
+  document.getElementById("homeContent").style.display="grid";
+
+  if(category==="beranda"){
+
+    categoryTitle.innerHTML="📰 Berita Terbaru";
+
+    newsList.classList.remove("hidden");
+    emptyNews.classList.add("hidden");
+
+  }else if(category==="nasional"){
+
+    categoryTitle.innerHTML="📰 Berita Nasional";
+
+    newsList.classList.remove("hidden");
+    emptyNews.classList.add("hidden");
+
+  }else{
+
+    const names={
+      internasional:"🌎 Berita Internasional",
+      teknologi:"💻 Berita Teknologi",
+      olahraga:"⚽ Berita Olahraga",
+      ekonomi:"💰 Berita Ekonomi",
+      lifestyle:"✨ Berita Lifestyle"
+    };
+
+    categoryTitle.innerHTML=names[category];
+
+    newsList.classList.add("hidden");
+    emptyNews.classList.remove("hidden");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
 </script>
 
 </body>
