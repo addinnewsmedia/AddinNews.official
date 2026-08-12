@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://addinnewsmedia.github.io/AddinNews.official/sitemap.xml
