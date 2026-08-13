@@ -9,237 +9,214 @@
 <meta name="description" content="AddinNews menyajikan berita terkini, berita nasional, internasional, teknologi, olahraga, ekonomi dan lifestyle.">
 <meta name="robots" content="index, follow">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header>
-  <div class="header-inner">
+<div class="header-inner">
 
-    <a href="#" class="logo-link" aria-label="AddinNews">
-      <img
-        class="logo"
-        src="https://cdn.phototourl.com/free/2026-08-12-81c6a61f-20c5-4eb8-9c95-950329a86342.png"
-        alt="AddinNews"
-      >
-    </a>
+<a href="#" aria-label="AddinNews">
+<img
+class="logo"
+alt="AddinNews"
+src="https://cdn.phototourl.com/free/2026-08-12-81c6a61f-20c5-4eb8-9c95-950329a86342.png"
+>
+</a>
 
-    <div class="header-clock" id="realtimeClock">
-      00:00:00 WIB
-    </div>
+<div class="header-clock" id="realtimeClock">
+00:00:00 WIB
+</div>
 
-    <button class="theme-btn" id="themeBtn" onclick="toggleDarkMode()" aria-label="Dark Mode">
-      🌙
-    </button>
+<button
+class="theme-btn"
+id="themeBtn"
+onclick="toggleDarkMode()"
+aria-label="Dark Mode"
+title="Dark Mode"
+>🌙</button>
 
-    <button class="menu-btn" onclick="openMenu()" aria-label="Menu">
-      ☰
-    </button>
+<button
+class="menu-btn"
+onclick="openMenu()"
+aria-label="Buka menu"
+>☰</button>
 
-  </div>
+</div>
 </header>
 
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 <div class="side-menu" id="sideMenu">
 
-  <button class="close-menu" onclick="closeMenu()">✕</button>
+<button class="close-menu" onclick="closeMenu()">✕</button>
 
-  <h2>AddinNews</h2>
+<h2>AddinNews</h2>
 
-  <a href="#" onclick="showCategory('beranda');closeMenu()">🏠 Beranda</a>
-  <a href="#" onclick="showCategory('nasional');closeMenu()">📰 Nasional</a>
-  <a href="#" onclick="showCategory('internasional');closeMenu()">🌎 Internasional</a>
-  <a href="#" onclick="showCategory('teknologi');closeMenu()">💻 Teknologi</a>
-  <a href="#" onclick="showCategory('olahraga');closeMenu()">⚽ Olahraga</a>
-  <a href="#" onclick="showCategory('ekonomi');closeMenu()">💰 Ekonomi</a>
-  <a href="#" onclick="showCategory('lifestyle');closeMenu()">✨ Lifestyle</a>
+<a href="#" onclick="showCategory('beranda');closeMenu()">🏠 Beranda</a>
+<a href="#" onclick="showCategory('nasional');closeMenu()">📰 Nasional</a>
+<a href="#" onclick="showCategory('internasional');closeMenu()">🌎 Internasional</a>
+<a href="#" onclick="showCategory('teknologi');closeMenu()">💻 Teknologi</a>
+<a href="#" onclick="showCategory('olahraga');closeMenu()">⚽ Olahraga</a>
+<a href="#" onclick="showCategory('ekonomi');closeMenu()">💰 Ekonomi</a>
+<a href="#" onclick="showCategory('lifestyle');closeMenu()">✨ Lifestyle</a>
 
 </div>
 
 <nav>
-  <div class="nav-inner">
+<div class="nav-inner">
 
-    <a href="#" class="active" data-category="beranda" onclick="showCategory('beranda')">
-      Beranda
-    </a>
+<a href="#" class="active" data-category="beranda" onclick="showCategory('beranda')">Beranda</a>
+<a href="#" data-category="nasional" onclick="showCategory('nasional')">Nasional</a>
+<a href="#" data-category="internasional" onclick="showCategory('internasional')">Internasional</a>
+<a href="#" data-category="teknologi" onclick="showCategory('teknologi')">Teknologi</a>
+<a href="#" data-category="olahraga" onclick="showCategory('olahraga')">Olahraga</a>
+<a href="#" data-category="ekonomi" onclick="showCategory('ekonomi')">Ekonomi</a>
+<a href="#" data-category="lifestyle" onclick="showCategory('lifestyle')">Lifestyle</a>
 
-    <a href="#" data-category="nasional" onclick="showCategory('nasional')">
-      Nasional
-    </a>
-
-    <a href="#" data-category="internasional" onclick="showCategory('internasional')">
-      Internasional
-    </a>
-
-    <a href="#" data-category="teknologi" onclick="showCategory('teknologi')">
-      Teknologi
-    </a>
-
-    <a href="#" data-category="olahraga" onclick="showCategory('olahraga')">
-      Olahraga
-    </a>
-
-    <a href="#" data-category="ekonomi" onclick="showCategory('ekonomi')">
-      Ekonomi
-    </a>
-
-    <a href="#" data-category="lifestyle" onclick="showCategory('lifestyle')">
-      Lifestyle
-    </a>
-
-  </div>
+</div>
 </nav>
 
 <div class="search-container">
-  <div class="search-box">
 
-    <span class="search-icon">🔎</span>
+<div class="search-box">
 
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="Cari berita berdasarkan judul..."
-      autocomplete="off"
-      oninput="searchNews()"
-    >
+<span class="search-icon">🔎</span>
 
-  </div>
+<input
+type="search"
+id="searchInput"
+placeholder="Cari berita berdasarkan judul..."
+autocomplete="off"
+oninput="searchNews()"
+>
+
+</div>
 </div>
 
 <div class="ad-container">
-  <div class="ad-box">
+<div class="ad-box">
 
-    <span class="ad-label">Advertisement</span>
+<span class="ad-label">Advertisement</span>
 
-    Area Iklan
+Area Iklan
 
-  </div>
+</div>
 </div>
 
 <main>
 
 <section class="breaking">
 
-  <div class="breaking-title">
-    <span>🔥</span>
-    TOP BERITA
-  </div>
+<div class="breaking-title">
+<span>🔥</span>
+TOP BERITA
+</div>
 
-  <div class="breaking-news-item" onclick="readArticle()">
+<div class="breaking-news-item" onclick="readArticle()">
 
-    <span class="breaking-tag">TOP</span>
+<span class="breaking-tag">TOP</span>
 
-    <span class="breaking-text">
-      Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
-    </span>
+<span class="breaking-text">
+Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
+</span>
 
-    <span class="breaking-arrow">→</span>
+<span class="breaking-arrow">→</span>
 
-  </div>
-
+</div>
 </section>
 
 <div id="homeContent" class="content-grid">
 
 <section>
 
-  <h1 class="section-title" id="categoryTitle">
-    📰 Berita Terbaru
-  </h1>
+<h1 class="section-title" id="categoryTitle">
+📰 Berita Terbaru
+</h1>
 
-  <div id="loadingBox" class="loading-box">
+<div id="loadingBox" class="loading-box">
 
-    <div class="skeleton skeleton-image"></div>
-    <div class="skeleton skeleton-line"></div>
-    <div class="skeleton skeleton-line short"></div>
+<div class="skeleton skeleton-image"></div>
+<div class="skeleton skeleton-line"></div>
+<div class="skeleton skeleton-line short"></div>
 
-  </div>
+</div>
 
-  <div id="emptyNews" class="empty-news hidden">
+<div id="emptyNews" class="empty-news hidden">
 
-    <div class="empty-icon">📰</div>
+<div class="empty-icon">📰</div>
 
-    <h2 id="emptyTitle">
-      Belum Ada Berita
-    </h2>
+<h2 id="emptyTitle">Belum Ada Berita</h2>
 
-    <p id="emptyText">
-      Belum ada berita pada kategori ini.
-    </p>
+<p id="emptyText">
+Belum ada berita pada kategori ini.
+</p>
 
-  </div>
+</div>
 
-  <div id="newsList" class="news-list">
+<div id="newsList" class="news-list">
 
-    <article
-      class="news-card"
-      data-category="nasional"
-      data-title="Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah"
-    >
+<article
+class="news-card"
+data-category="nasional"
+data-title="Semarak Jelang HUT ke-81 RI Suasana 17 Agustus Mulai Terasa di Berbagai Daerah"
+>
 
-      <img
-        class="news-image"
-        src="https://cdn.phototourl.com/free/2026-08-12-1603c041-b0f7-45fe-a67c-fe65ec93493c.png"
-        alt="Semarak menjelang HUT ke-81 Republik Indonesia"
-      >
+<img
+class="news-image"
+src="https://cdn.phototourl.com/free/2026-08-12-1603c041-b0f7-45fe-a67c-fe65ec93493c.png"
+alt="Semarak menjelang HUT ke-81 Republik Indonesia"
+>
 
-      <div class="news-content">
+<div class="news-content">
 
-        <span class="news-category">
-          NASIONAL
-        </span>
+<span class="news-category">NASIONAL</span>
 
-        <h2 class="news-title">
-          Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
-        </h2>
+<h2 class="news-title">
+Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
+</h2>
 
-        <div class="news-date">
-          12 Agustus 2026
-        </div>
+<div class="news-date">
+12 Agustus 2026
+</div>
 
-        <p class="news-preview">
-          Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah. Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan...
-        </p>
+<p class="news-preview">
+Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah. Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan...
+</p>
 
-        <button class="read-more" onclick="readArticle()">
-          Lihat Selengkapnya →
-        </button>
+<button class="read-more" onclick="readArticle()">
+Lihat Selengkapnya →
+</button>
 
-      </div>
+</div>
+</article>
 
-    </article>
-
-  </div>
+</div>
 
 </section>
 
 <aside>
 
-  <div class="sidebar-card">
+<div class="sidebar-card">
 
-    <h3>
-      🔥 Terpopuler
-    </h3>
+<h3>🔥 Terpopuler</h3>
 
-    <div id="popularList" class="popular-list"></div>
+<div id="popularList" class="popular-list"></div>
 
-  </div>
+</div>
 
-  <div class="ad-container sidebar-ad">
+<div class="ad-container sidebar-ad">
 
-    <div class="ad-box ad-large">
+<div class="ad-box ad-large">
 
-      <span class="ad-label">
-        Advertisement
-      </span>
+<span class="ad-label">Advertisement</span>
 
-      Area Iklan
+Area Iklan
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </aside>
 
@@ -247,135 +224,127 @@
 
 <article class="article-page" id="articlePage">
 
-  <img
-    class="article-page-image"
-    src="https://cdn.phototourl.com/free/2026-08-12-1603c041-b0f7-45fe-a67c-fe65ec93493c.png"
-    alt="Semarak menjelang HUT ke-81 Republik Indonesia"
-  >
+<img
+class="article-page-image"
+src="https://cdn.phototourl.com/free/2026-08-12-1603c041-b0f7-45fe-a67c-fe65ec93493c.png"
+alt="Semarak menjelang HUT ke-81 Republik Indonesia"
+>
 
-  <div class="article-page-content">
+<div class="article-page-content">
 
-    <button class="back-button" onclick="closeArticle()">
-      ← Kembali ke Berita
-    </button>
+<button class="back-button" onclick="closeArticle()">
+← Kembali ke Berita
+</button>
 
-    <span class="news-category">
-      NASIONAL
-    </span>
+<span class="news-category">NASIONAL</span>
 
-    <h1 class="news-title">
-      Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
-    </h1>
+<h1 class="news-title">
+Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
+</h1>
 
-    <div class="article-info">
+<div class="article-info">
 
-      <span>📅 12 Agustus 2026</span>
-      <span>•</span>
-      <span>⏱️ 2 menit baca</span>
+<span>📅 12 Agustus 2026</span>
+<span>•</span>
+<span>⏱️ 2 menit baca</span>
 
-    </div>
+</div>
 
-    <div class="article-actions">
+<div class="article-actions">
 
-      <button class="share-button" onclick="shareArticle()">
-        📤 Bagikan Artikel
-      </button>
+<button class="share-button" onclick="shareArticle()">
+📤 Bagikan Artikel
+</button>
 
-    </div>
+</div>
 
-    <p>
-      Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah.
-    </p>
+<p>
+Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah.
+</p>
 
-    <p>
-      Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan, mulai dari menghias lingkungan dengan bendera Merah Putih hingga mengadakan berbagai perlombaan khas 17 Agustus.
-    </p>
+<p>
+Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan, mulai dari menghias lingkungan dengan bendera Merah Putih hingga mengadakan berbagai perlombaan khas 17 Agustus.
+</p>
 
-    <h3 class="news-subtitle">
-      Berbagai Persiapan Mulai Dilakukan
-    </h3>
+<h3 class="news-subtitle">
+Berbagai Persiapan Mulai Dilakukan
+</h3>
 
-    <p>
-      Di sejumlah lingkungan, warga terlihat mulai memasang bendera Merah Putih dan berbagai dekorasi bernuansa merah putih. Kegiatan tersebut menjadi salah satu cara masyarakat ikut memeriahkan peringatan kemerdekaan Indonesia.
-    </p>
+<p>
+Di sejumlah lingkungan, warga terlihat mulai memasang bendera Merah Putih dan berbagai dekorasi bernuansa merah putih. Kegiatan tersebut menjadi salah satu cara masyarakat ikut memeriahkan peringatan kemerdekaan Indonesia.
+</p>
 
-    <p>
-      Selain dekorasi, berbagai perlombaan juga mulai dipersiapkan. Lomba seperti makan kerupuk, balap karung, memasukkan pensil ke botol, hingga panjat pinang masih menjadi kegiatan yang banyak dinantikan masyarakat.
-    </p>
+<p>
+Selain dekorasi, berbagai perlombaan juga mulai dipersiapkan. Lomba seperti makan kerupuk, balap karung, memasukkan pensil ke botol, hingga panjat pinang masih menjadi kegiatan yang banyak dinantikan masyarakat.
+</p>
 
-    <h3 class="news-subtitle">
-      Bukan Sekadar Perlombaan
-    </h3>
+<h3 class="news-subtitle">
+Bukan Sekadar Perlombaan
+</h3>
 
-    <p>
-      Kemeriahan 17 Agustus bukan hanya tentang perlombaan dan hadiah. Kegiatan tersebut juga menjadi momen bagi masyarakat untuk berkumpul, mempererat kebersamaan, serta mengenang perjuangan para pahlawan dalam merebut kemerdekaan.
-    </p>
+<p>
+Kemeriahan 17 Agustus bukan hanya tentang perlombaan dan hadiah. Kegiatan tersebut juga menjadi momen bagi masyarakat untuk berkumpul, mempererat kebersamaan, serta mengenang perjuangan para pahlawan dalam merebut kemerdekaan.
+</p>
 
-    <p>
-      Dengan semakin dekatnya tanggal 17 Agustus, suasana perayaan diperkirakan akan semakin meriah di berbagai wilayah.
-    </p>
+<p>
+Dengan semakin dekatnya tanggal 17 Agustus, suasana perayaan diperkirakan akan semakin meriah di berbagai wilayah.
+</p>
 
-    <p>
-      <strong>
-        Dirgahayu Republik Indonesia ke-81! 🇮🇩
-      </strong>
-    </p>
+<p>
+<strong>Dirgahayu Republik Indonesia ke-81! 🇮🇩</strong>
+</p>
 
-    <p>
-      Catatan: Detail kegiatan dapat berbeda di setiap daerah sesuai agenda masyarakat setempat.
-    </p>
+<p>
+Catatan: Detail kegiatan dapat berbeda di setiap daerah sesuai agenda masyarakat setempat.
+</p>
 
-    <div class="related-title">
-      Berita Terkait
-    </div>
+<div class="related-title">
+Berita Terkait
+</div>
 
-    <div class="related-card" onclick="closeArticle()">
+<div class="related-card" onclick="closeArticle()">
 
-      <h4>
-        🇮🇩 Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah
-      </h4>
+<h4>
+🇮🇩 Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah
+</h4>
 
-    </div>
+</div>
 
-  </div>
-
+</div>
 </article>
 
 </main>
 
 <div class="ad-container">
 
-  <div class="ad-box">
+<div class="ad-box">
 
-    <span class="ad-label">
-      Advertisement
-    </span>
+<span class="ad-label">Advertisement</span>
 
-    Area Iklan
+Area Iklan
 
-  </div>
-
+</div>
 </div>
 
 <footer>
 
-  <div class="footer-logo">
-    AddinNews
-  </div>
+<div class="footer-logo">
+AddinNews
+</div>
 
-  <p>
-    Berita Terkini, Cepat &amp; Terpercaya
-  </p>
+<p>
+Berita Terkini, Cepat &amp; Terpercaya
+</p>
 
-  <br>
+<br>
 
-  <p>
-    © 2026 AddinNews. Semua hak dilindungi.
-  </p>
+<p>
+© 2026 AddinNews. Semua hak dilindungi.
+</p>
 
 </footer>
 
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 
 </body>
-  </html>
+</html>
