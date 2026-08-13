@@ -366,10 +366,6 @@ function renderPopular(){
       onclick="readArticle()"
     >
 
-      <div class="popular-number">
-        1
-      </div>
-
       <div>
 
         <div class="popular-title">
