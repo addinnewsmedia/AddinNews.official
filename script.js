@@ -359,16 +359,6 @@ function renderPopular(){
   const list =
     document.getElementById("popularList");
 
-  const views =
-    JSON.parse(
-      localStorage.getItem(
-        "addinnews_article_views"
-      ) || "{}"
-    );
-
-  const count =
-    views["hut-81-ri"] || 0;
-
   list.innerHTML = `
 
     <div
@@ -386,10 +376,6 @@ function renderPopular(){
           Semarak Jelang HUT ke-81 RI,
           Suasana 17 Agustus Mulai Terasa
           di Berbagai Daerah 🇮🇩
-        </div>
-
-        <div class="popular-views">
-          👁 ${count}
         </div>
 
       </div>
