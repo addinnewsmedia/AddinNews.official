@@ -9,7 +9,7 @@
 <meta name="description" content="AddinNews menyajikan berita terkini, berita nasional, internasional, teknologi, olahraga, ekonomi dan lifestyle.">
 <meta name="robots" content="index, follow">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -17,20 +17,31 @@
 <header>
 <div class="header-inner">
 
-<a href="#" class="logo-link" aria-label="AddinNews">
+<a href="#" aria-label="AddinNews">
 <img
 class="logo"
+alt="AddinNews"
 src="https://cdn.phototourl.com/free/2026-08-12-81c6a61f-20c5-4eb8-9c95-950329a86342.png"
-alt="AddinNews">
+>
 </a>
 
 <div class="header-clock" id="realtimeClock">
 00:00:00 WIB
 </div>
 
-<button class="theme-btn" id="themeBtn" onclick="toggleDarkMode()" aria-label="Dark Mode">🌙</button>
+<button
+class="theme-btn"
+id="themeBtn"
+onclick="toggleDarkMode()"
+aria-label="Dark Mode"
+title="Dark Mode"
+>🌙</button>
 
-<button class="menu-btn" onclick="openMenu()" aria-label="Menu">☰</button>
+<button
+class="menu-btn"
+onclick="openMenu()"
+aria-label="Buka menu"
+>☰</button>
 
 </div>
 </header>
@@ -68,6 +79,7 @@ alt="AddinNews">
 </nav>
 
 <div class="search-container">
+
 <div class="search-box">
 
 <span class="search-icon">🔎</span>
@@ -77,7 +89,8 @@ type="search"
 id="searchInput"
 placeholder="Cari berita berdasarkan judul..."
 autocomplete="off"
-oninput="searchNews()">
+oninput="searchNews()"
+>
 
 </div>
 </div>
@@ -112,7 +125,6 @@ Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 
 <span class="breaking-arrow">→</span>
 
 </div>
-
 </section>
 
 <div id="homeContent" class="content-grid">
@@ -135,9 +147,7 @@ Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 
 
 <div class="empty-icon">📰</div>
 
-<h2 id="emptyTitle">
-Belum Ada Berita
-</h2>
+<h2 id="emptyTitle">Belum Ada Berita</h2>
 
 <p id="emptyText">
 Belum ada berita pada kategori ini.
@@ -150,18 +160,18 @@ Belum ada berita pada kategori ini.
 <article
 class="news-card"
 data-category="nasional"
-data-title="Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah">
+data-title="Semarak Jelang HUT ke-81 RI Suasana 17 Agustus Mulai Terasa di Berbagai Daerah"
+>
 
 <img
 class="news-image"
-src="images/17-agustus-2026.png"
-alt="Semarak menjelang HUT ke-81 Republik Indonesia">
+src="img/berita.png"
+alt="Semarak menjelang HUT ke-81 Republik Indonesia"
+>
 
 <div class="news-content">
 
-<span class="news-category">
-NASIONAL
-</span>
+<span class="news-category">NASIONAL</span>
 
 <h2 class="news-title">
 Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
@@ -190,28 +200,9 @@ Lihat Selengkapnya →
 
 <div class="sidebar-card">
 
-<h3>
-🔥 Terpopuler
-</h3>
+<h3>🔥 Terpopuler</h3>
 
-<div id="popularList" class="popular-list">
-
-<div class="popular-item" onclick="readArticle()">
-<span class="popular-number">1</span>
-
-<div>
-<strong>
-Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah
-</strong>
-
-<small>
-Nasional
-</small>
-</div>
-
-</div>
-
-</div>
+<div id="popularList" class="popular-list"></div>
 
 </div>
 
@@ -219,9 +210,7 @@ Nasional
 
 <div class="ad-box ad-large">
 
-<span class="ad-label">
-Advertisement
-</span>
+<span class="ad-label">Advertisement</span>
 
 Area Iklan
 
@@ -237,8 +226,9 @@ Area Iklan
 
 <img
 class="article-page-image"
-src="images/17-agustus-2026.png"
-alt="Semarak menjelang HUT ke-81 Republik Indonesia">
+src="img/berita.png"
+alt="Semarak menjelang HUT ke-81 Republik Indonesia"
+>
 
 <div class="article-page-content">
 
@@ -246,9 +236,7 @@ alt="Semarak menjelang HUT ke-81 Republik Indonesia">
 ← Kembali ke Berita
 </button>
 
-<span class="news-category">
-NASIONAL
-</span>
+<span class="news-category">NASIONAL</span>
 
 <h1 class="news-title">
 Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
@@ -303,9 +291,7 @@ Dengan semakin dekatnya tanggal 17 Agustus, suasana perayaan diperkirakan akan s
 </p>
 
 <p>
-<strong>
-Dirgahayu Republik Indonesia ke-81! 🇮🇩
-</strong>
+<strong>Dirgahayu Republik Indonesia ke-81! 🇮🇩</strong>
 </p>
 
 <p>
@@ -325,7 +311,6 @@ Berita Terkait
 </div>
 
 </div>
-
 </article>
 
 </main>
@@ -334,14 +319,11 @@ Berita Terkait
 
 <div class="ad-box">
 
-<span class="ad-label">
-Advertisement
-</span>
+<span class="ad-label">Advertisement</span>
 
 Area Iklan
 
 </div>
-
 </div>
 
 <footer>
@@ -362,7 +344,7 @@ Berita Terkini, Cepat &amp; Terpercaya
 
 </footer>
 
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 
 </body>
-  </html>
+</html>
