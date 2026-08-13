@@ -114,7 +114,7 @@ Area Iklan
 TOP BERITA
 </div>
 
-<div class="breaking-news-item" onclick="readArticle()">
+<div class="breaking-news-item" onclick="readArticle('hut-81-ri')">
 
 <span class="breaking-tag">TOP</span>
 
@@ -157,6 +157,8 @@ Belum ada berita pada kategori ini.
 
 <div id="newsList" class="news-list">
 
+<!-- BERITA 1 -->
+
 <article
 class="news-card"
 data-category="nasional"
@@ -185,7 +187,45 @@ Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 
 Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah. Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan...
 </p>
 
-<button class="read-more" onclick="readArticle()">
+<button class="read-more" onclick="readArticle('hut-81-ri')">
+Lihat Selengkapnya →
+</button>
+
+</div>
+</article>
+
+
+<!-- BERITA 2 -->
+
+<article
+class="news-card"
+data-category="internasional"
+data-title="Hujan Meteor Perseid Capai Puncak Hari Ini Bisa Disaksikan dari Indonesia"
+>
+
+<img
+class="news-image"
+src="berita1.png"
+alt="Hujan Meteor Perseid"
+>
+
+<div class="news-content">
+
+<span class="news-category">INTERNASIONAL</span>
+
+<h2 class="news-title">
+Hujan Meteor Perseid Capai Puncak Hari Ini, Bisa Disaksikan dari Indonesia 🌠
+</h2>
+
+<div class="news-date">
+13 Agustus 2026
+</div>
+
+<p class="news-preview">
+Fenomena astronomi kembali menghiasi langit. Hujan meteor Perseid mencapai puncaknya pada Kamis, 13 Agustus 2026, dan masyarakat Indonesia berkesempatan untuk menyaksikan fenomena langit tersebut...
+</p>
+
+<button class="read-more" onclick="readArticle('perseid-2026')">
 Lihat Selengkapnya →
 </button>
 
@@ -222,95 +262,13 @@ Area Iklan
 
 </div>
 
+
+<!-- HALAMAN ARTIKEL -->
+
 <article class="article-page" id="articlePage">
 
-<img
-class="article-page-image"
-src="berita0.png"
-alt="Semarak menjelang HUT ke-81 Republik Indonesia"
->
+<div id="articleContent"></div>
 
-<div class="article-page-content">
-
-<button class="back-button" onclick="closeArticle()">
-← Kembali ke Berita
-</button>
-
-<span class="news-category">NASIONAL</span>
-
-<h1 class="news-title">
-Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩
-</h1>
-
-<div class="article-info">
-
-<span>📅 12 Agustus 2026</span>
-<span>•</span>
-<span>⏱️ 2 menit baca</span>
-
-</div>
-
-<div class="article-actions">
-
-<button class="share-button" onclick="shareArticle()">
-📤 Bagikan Artikel
-</button>
-
-</div>
-
-<p>
-Menjelang peringatan Hari Ulang Tahun (HUT) ke-81 Republik Indonesia pada 17 Agustus 2026, suasana kemeriahan mulai terasa di berbagai daerah.
-</p>
-
-<p>
-Warga mulai mempersiapkan berbagai kegiatan untuk menyambut hari kemerdekaan, mulai dari menghias lingkungan dengan bendera Merah Putih hingga mengadakan berbagai perlombaan khas 17 Agustus.
-</p>
-
-<h3 class="news-subtitle">
-Berbagai Persiapan Mulai Dilakukan
-</h3>
-
-<p>
-Di sejumlah lingkungan, warga terlihat mulai memasang bendera Merah Putih dan berbagai dekorasi bernuansa merah putih. Kegiatan tersebut menjadi salah satu cara masyarakat ikut memeriahkan peringatan kemerdekaan Indonesia.
-</p>
-
-<p>
-Selain dekorasi, berbagai perlombaan juga mulai dipersiapkan. Lomba seperti makan kerupuk, balap karung, memasukkan pensil ke botol, hingga panjat pinang masih menjadi kegiatan yang banyak dinantikan masyarakat.
-</p>
-
-<h3 class="news-subtitle">
-Bukan Sekadar Perlombaan
-</h3>
-
-<p>
-Kemeriahan 17 Agustus bukan hanya tentang perlombaan dan hadiah. Kegiatan tersebut juga menjadi momen bagi masyarakat untuk berkumpul, mempererat kebersamaan, serta mengenang perjuangan para pahlawan dalam merebut kemerdekaan.
-</p>
-
-<p>
-Dengan semakin dekatnya tanggal 17 Agustus, suasana perayaan diperkirakan akan semakin meriah di berbagai wilayah.
-</p>
-
-<p>
-<strong>Dirgahayu Republik Indonesia ke-81! 🇮🇩</strong>
-</p>
-
-<p>
-Catatan: Detail kegiatan dapat berbeda di setiap daerah sesuai agenda masyarakat setempat.
-</p>
-
-<div class="related-title">
-Berita Terkait
-</div>
-
-<div class="related-card" onclick="closeArticle()">
-
-<h4>
-🇮🇩 Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah
-</h4>
-
-</div>
-
-</div>
 </article>
 
 </main>
@@ -347,4 +305,4 @@ Berita Terkini, Cepat &amp; Terpercaya
 <script src="script.js"></script>
 
 </body>
-  </html>
+</html>
