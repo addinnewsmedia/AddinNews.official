@@ -234,21 +234,44 @@ animation:firePulse 1.5s infinite
 }
 
 .breaking-news-item{
-display:flex;
-align-items:center;
-gap:11px;
-background:var(--soft);
-border:1px solid var(--border);
-border-radius:11px;
-padding:13px;
-cursor:pointer;
-transition:all .25s ease
+display:block;
+width:100%
 }
 
 .breaking-news-item:hover{
+border-color:#b9d8e9
+}
+
+.top-news-row{
+display:flex;
+align-items:center;
+gap:11px;
+width:100%;
+padding:13px;
+background:var(--soft);
+border:1px solid var(--border);
+border-radius:11px;
+cursor:pointer;
+transition:all .25s ease;
+margin-bottom:8px
+}
+
+.top-news-row:last-child{
+margin-bottom:0
+}
+
+.top-news-row:hover{
 transform:translateY(-2px);
 border-color:#b9d8e9;
 box-shadow:0 6px 15px rgba(7,139,208,.09)
+}
+
+.top-news-row .breaking-text{
+flex:1
+}
+
+.top-news-row .breaking-arrow{
+margin-left:auto
 }
 
 .breaking-tag{
