@@ -1,83 +1,65 @@
-/* =========================
-   MENU
-========================= */
+/* MENU */
 
 function openMenu(){
-document.getElementById("sideMenu").classList.add("active");
-document.getElementById("menuOverlay").classList.add("active");
+  document.getElementById("sideMenu").classList.add("active");
+  document.getElementById("menuOverlay").classList.add("active");
 }
 
 function closeMenu(){
-document.getElementById("sideMenu").classList.remove("active");
-document.getElementById("menuOverlay").classList.remove("active");
+  document.getElementById("sideMenu").classList.remove("active");
+  document.getElementById("menuOverlay").classList.remove("active");
 }
 
 
-/* =========================
-   DARK MODE
-========================= */
+/* DARK MODE */
 
 function toggleDarkMode(){
 
-document.body.classList.toggle("dark");
+  document.body.classList.toggle("dark");
 
-const isDark =
-document.body.classList.contains("dark");
+  const isDark =
+    document.body.classList.contains("dark");
 
-localStorage.setItem(
-"addinnews-dark-mode",
-isDark ? "1" : "0"
-);
+  localStorage.setItem(
+    "addinnews-dark-mode",
+    isDark ? "1" : "0"
+  );
 
-document.getElementById("themeBtn").textContent =
-isDark ? "☀️" : "🌙";
+  document.getElementById("themeBtn").textContent =
+    isDark ? "☀️" : "🌙";
 }
 
 function loadDarkMode(){
 
-const saved =
-localStorage.getItem("addinnews-dark-mode");
+  const saved =
+    localStorage.getItem("addinnews-dark-mode");
 
-if(saved === "1"){
+  if(saved === "1"){
 
-document.body.classList.add("dark");
+    document.body.classList.add("dark");
 
-document.getElementById("themeBtn").textContent =
-"☀️";
-
-}else{
-
-document.getElementById("themeBtn").textContent =
-"🌙";
-
-}
+    document.getElementById("themeBtn").textContent =
+      "☀️";
+  }
 }
 
 
-/* =========================
-   JAM REALTIME
-========================= */
+/* JAM REALTIME */
 
 function updateClock(){
 
-const clock =
-document.getElementById("realtimeClock");
+  const now = new Date();
 
-if(!clock) return;
+  const time = new Intl.DateTimeFormat("id-ID",{
+    timeZone:"Asia/Jakarta",
+    hour:"2-digit",
+    minute:"2-digit",
+    second:"2-digit",
+    hour12:false
+  }).format(now);
 
-const now = new Date();
-
-const time =
-new Intl.DateTimeFormat("id-ID",{
-timeZone:"Asia/Jakarta",
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit",
-hour12:false
-}).format(now);
-
-clock.textContent =
-time + " WIB";
+  document.getElementById("realtimeClock").textContent =
+    time + " WIB";
 }
 
 updateClock();
@@ -85,326 +67,358 @@ updateClock();
 setInterval(updateClock,1000);
 
 
-/* =========================
-   ARTIKEL
-========================= */
+/* JUMLAH VIEW */
+
+function increaseArticleView(){
+
+  const key =
+    "addinnews_article_views";
+
+  const views =
+    JSON.parse(
+      localStorage.getItem(key) || "{}"
+    );
+
+  views["hut-81-ri"] =
+    (views["hut-81-ri"] || 0) + 1;
+
+  localStorage.setItem(
+    key,
+    JSON.stringify(views)
+  );
+}
+
+
+/* BUKA ARTIKEL */
 
 function readArticle(){
 
-const home =
-document.getElementById("homeContent");
+  increaseArticleView();
 
-const article =
-document.getElementById("articlePage");
+  document.getElementById("homeContent")
+    .style.display = "none";
 
-if(home){
-home.style.display = "none";
+  document.getElementById("articlePage")
+    .classList.add("active");
+
+  renderPopular();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
-if(article){
-article.classList.add("active");
-}
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-}
-
+/* KEMBALI */
 
 function closeArticle(){
 
-const home =
-document.getElementById("homeContent");
+  document.getElementById("articlePage")
+    .classList.remove("active");
 
-const article =
-document.getElementById("articlePage");
+  document.getElementById("homeContent")
+    .style.display = "grid";
 
-if(article){
-article.classList.remove("active");
-}
-
-if(home){
-home.style.display = "grid";
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 
-/* =========================
-   BAGIKAN
-========================= */
+/* SHARE */
 
 function shareArticle(){
 
-const shareData = {
+  const shareData = {
+    title:
+      "Semarak Jelang HUT ke-81 RI",
 
-title:
-"Semarak Jelang HUT ke-81 RI",
+    text:
+      "Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩",
 
-text:
-"Semarak Jelang HUT ke-81 RI, Suasana 17 Agustus Mulai Terasa di Berbagai Daerah 🇮🇩",
+    url:
+      window.location.href
+  };
 
-url:
-window.location.href
+  if(navigator.share){
 
-};
+    navigator.share(shareData)
+      .catch(function(){});
 
-if(navigator.share){
+  }else{
 
-navigator.share(shareData)
-.catch(function(){});
+    navigator.clipboard.writeText(
+      window.location.href
+    );
 
-}else{
-
-if(navigator.clipboard){
-
-navigator.clipboard.writeText(
-window.location.href
-);
-
-alert("Link artikel berhasil disalin.");
-
-}else{
-
-alert("Silakan salin link halaman ini.");
-
-}
-
-}
-
+    alert("Link artikel berhasil disalin.");
+  }
 }
 
 
-/* =========================
-   KATEGORI
-========================= */
+/* KATEGORI */
 
 function showCategory(category){
 
-const newsList =
-document.getElementById("newsList");
+  const newsList =
+    document.getElementById("newsList");
 
-const emptyNews =
-document.getElementById("emptyNews");
+  const emptyNews =
+    document.getElementById("emptyNews");
 
-const categoryTitle =
-document.getElementById("categoryTitle");
+  const categoryTitle =
+    document.getElementById("categoryTitle");
 
-const searchInput =
-document.getElementById("searchInput");
+  const searchInput =
+    document.getElementById("searchInput");
 
-const article =
-document.getElementById("articlePage");
+  document.getElementById("articlePage")
+    .classList.remove("active");
 
-const home =
-document.getElementById("homeContent");
+  document.getElementById("homeContent")
+    .style.display = "grid";
 
-if(article){
-article.classList.remove("active");
-}
+  searchInput.value = "";
 
-if(home){
-home.style.display = "grid";
-}
+  document.querySelectorAll("nav a")
+    .forEach(function(link){
 
-if(searchInput){
-searchInput.value = "";
-}
+      link.classList.remove("active");
 
-document.querySelectorAll("nav a")
-.forEach(function(link){
+      if(link.dataset.category === category){
 
-link.classList.remove("active");
+        link.classList.add("active");
+      }
+    });
 
-if(link.dataset.category === category){
-link.classList.add("active");
-}
+  const card =
+    document.querySelector(".news-card");
 
-});
+  if(category === "beranda"){
 
-const card =
-document.querySelector(".news-card");
+    categoryTitle.innerHTML =
+      "📰 Berita Terbaru";
 
-if(
-category === "beranda" ||
-category === "nasional"
-){
+    newsList.classList.remove("hidden");
+    emptyNews.classList.add("hidden");
 
-if(category === "beranda"){
+    if(card){
+      card.style.display = "";
+    }
 
-categoryTitle.innerHTML =
-"📰 Berita Terbaru";
+  }else if(category === "nasional"){
 
-}else{
+    categoryTitle.innerHTML =
+      "📰 Berita Nasional";
 
-categoryTitle.innerHTML =
-"📰 Berita Nasional";
+    newsList.classList.remove("hidden");
+    emptyNews.classList.add("hidden");
 
-}
+    if(card){
+      card.style.display = "";
+    }
 
-newsList.classList.remove("hidden");
+  }else{
 
-emptyNews.classList.add("hidden");
+    const names = {
 
-if(card){
-card.style.display = "";
-}
+      internasional:
+        "🌎 Berita Internasional",
 
-}else{
+      teknologi:
+        "💻 Berita Teknologi",
 
-const names = {
+      olahraga:
+        "⚽ Berita Olahraga",
 
-internasional:
-"🌎 Berita Internasional",
+      ekonomi:
+        "💰 Berita Ekonomi",
 
-teknologi:
-"💻 Berita Teknologi",
+      lifestyle:
+        "✨ Berita Lifestyle"
+    };
 
-olahraga:
-"⚽ Berita Olahraga",
+    categoryTitle.innerHTML =
+      names[category];
 
-ekonomi:
-"💰 Berita Ekonomi",
+    newsList.classList.add("hidden");
 
-lifestyle:
-"✨ Berita Lifestyle"
+    emptyNews.classList.remove("hidden");
 
-};
+    document.getElementById("emptyTitle")
+      .textContent =
+      "Belum Ada Berita";
 
-categoryTitle.innerHTML =
-names[category] || "📰 Berita";
+    document.getElementById("emptyText")
+      .textContent =
+      "Belum ada berita pada kategori ini.";
+  }
 
-newsList.classList.add("hidden");
-
-emptyNews.classList.remove("hidden");
-
-document.getElementById("emptyTitle")
-.textContent =
-"Belum Ada Berita";
-
-document.getElementById("emptyText")
-.textContent =
-"Belum ada berita pada kategori ini.";
-
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 
-/* =========================
-   PENCARIAN
-========================= */
+/* PENCARIAN */
 
 function searchNews(){
 
-const input =
-document.getElementById("searchInput");
+  const query =
+    document.getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
 
-if(!input) return;
+  const newsList =
+    document.getElementById("newsList");
 
-const query =
-input.value.trim().toLowerCase();
+  const emptyNews =
+    document.getElementById("emptyNews");
 
-const newsList =
-document.getElementById("newsList");
+  const categoryTitle =
+    document.getElementById("categoryTitle");
 
-const emptyNews =
-document.getElementById("emptyNews");
+  const cards =
+    document.querySelectorAll(".news-card");
 
-const categoryTitle =
-document.getElementById("categoryTitle");
+  document.getElementById("articlePage")
+    .classList.remove("active");
 
-const cards =
-document.querySelectorAll(".news-card");
+  document.getElementById("homeContent")
+    .style.display = "grid";
 
-if(!query){
+  if(!query){
 
-categoryTitle.innerHTML =
-"📰 Berita Terbaru";
+    categoryTitle.innerHTML =
+      "📰 Berita Terbaru";
 
-cards.forEach(function(card){
+    cards.forEach(function(card){
+      card.style.display = "";
+    });
 
-card.style.display = "";
+    newsList.classList.remove("hidden");
+    emptyNews.classList.add("hidden");
 
-});
+    return;
+  }
 
-newsList.classList.remove("hidden");
-emptyNews.classList.add("hidden");
+  categoryTitle.innerHTML =
+    "🔎 Hasil Pencarian";
 
-return;
-}
+  let found = 0;
 
-categoryTitle.innerHTML =
-"🔎 Hasil Pencarian";
+  cards.forEach(function(card){
 
-let found = 0;
+    const title =
+      card.dataset.title.toLowerCase();
 
-cards.forEach(function(card){
+    if(title.includes(query)){
 
-const title =
-(card.dataset.title || "").toLowerCase();
+      card.style.display = "";
+      found++;
 
-if(title.includes(query)){
+    }else{
 
-card.style.display = "";
+      card.style.display = "none";
+    }
+  });
 
-found++;
+  if(found === 0){
 
-}else{
+    newsList.classList.add("hidden");
 
-card.style.display = "none";
+    emptyNews.classList.remove("hidden");
 
-}
+    document.getElementById("emptyTitle")
+      .textContent =
+      "Berita Tidak Ditemukan";
 
-});
+    document.getElementById("emptyText")
+      .textContent =
+      'Tidak ada berita yang sesuai dengan "' +
+      query +
+      '".';
 
-if(found === 0){
+  }else{
 
-newsList.classList.add("hidden");
+    newsList.classList.remove("hidden");
 
-emptyNews.classList.remove("hidden");
-
-document.getElementById("emptyTitle")
-.textContent =
-"Berita Tidak Ditemukan";
-
-document.getElementById("emptyText")
-.textContent =
-'Tidak ada berita yang sesuai dengan "' +
-query +
-'".';
-
-}else{
-
-newsList.classList.remove("hidden");
-
-emptyNews.classList.add("hidden");
-
-}
-
+    emptyNews.classList.add("hidden");
+  }
 }
 
 
-/* =========================
-   DARK MODE SAAT DIBUKA
-========================= */
+/* TERPOPULER */
 
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+function renderPopular(){
+
+  const list =
+    document.getElementById("popularList");
+
+  const views =
+    JSON.parse(
+      localStorage.getItem(
+        "addinnews_article_views"
+      ) || "{}"
+    );
+
+  const count =
+    views["hut-81-ri"] || 0;
+
+  list.innerHTML = `
+
+    <div
+      class="popular-item"
+      onclick="readArticle()"
+    >
+
+      <div class="popular-number">
+        1
+      </div>
+
+      <div>
+
+        <div class="popular-title">
+          Semarak Jelang HUT ke-81 RI,
+          Suasana 17 Agustus Mulai Terasa
+          di Berbagai Daerah 🇮🇩
+        </div>
+
+        <div class="popular-views">
+          👁 ${count} kali dibuka
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+}
+
+
+/* LOADING RINGAN */
+
+function showLoading(){
+
+  const loading =
+    document.getElementById("loadingBox");
+
+  loading.classList.add("active");
+
+  setTimeout(function(){
+
+    loading.classList.remove("active");
+
+  },350);
+}
+
+
+/* START */
 
 loadDarkMode();
-updateClock();
 
-}
-);
+renderPopular();
