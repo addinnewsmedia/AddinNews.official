@@ -389,7 +389,7 @@ function renderPopular(){
         </div>
 
         <div class="popular-views">
-          👁 ${count} kali dibuka
+          👁 ${count}
         </div>
 
       </div>
